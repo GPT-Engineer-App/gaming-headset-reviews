@@ -18,11 +18,9 @@ const Signup = () => {
       });
 
       if (response.ok) {
+        console.log("Signup successful");
       } else {
-      }
-
-      if (response.ok) {
-      } else {
+        console.error("Signup failed");
       }
     } catch (error) {
       console.error("Error signing up:", error);

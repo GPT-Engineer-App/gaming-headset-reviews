@@ -18,11 +18,9 @@ const Login = () => {
       });
 
       if (response.ok) {
+        console.log("Login successful");
       } else {
-      }
-
-      if (response.ok) {
-      } else {
+        console.error("Login failed");
       }
     } catch (error) {
       console.error("Error logging in:", error);

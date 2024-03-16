@@ -1,26 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Heading, Text, Image, Stack, Container, Grid, GridItem, Link } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 
-const products = [
-  {
-    id: 1,
-    name: "SteelSeries Arctis Nova Pro Wireless",
-    image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxTdGVlbFNlcmllcyUyMEFyY3RpcyUyME5vdmElMjBQcm8lMjBXaXJlbGVzcyUyMGdhbWluZyUyMGhlYWRzZXR8ZW58MHx8fHwxNzEwNTQ5NjQyfDA&ixlib=rb-4.0.3&q=80&w=1080",
-    description: "The SteelSeries Arctis Nova Pro Wireless is the ultimate wireless gaming headset, offering excellent audio quality, comfort, and features.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Razer BlackShark V2 Pro",
-    image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxSYXplciUyMEJsYWNrU2hhcmslMjBWMiUyMFBybyUyMGdhbWluZyUyMGhlYWRzZXR8ZW58MHx8fHwxNzEwNTQ5NjQyfDA&ixlib=rb-4.0.3&q=80&w=1080",
-    description: "The Razer BlackShark V2 Pro is a premium wireless gaming headset with THX Spatial Audio, delivering immersive sound and exceptional comfort.",
-    rating: 4.5,
-  },
-];
-
 const Index = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <Container maxW="container.lg" py={8}>
       <Heading as="h1" size="2xl" mb={8}>
