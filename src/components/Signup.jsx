@@ -5,8 +5,28 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+      } else {
+      }
+
+      if (response.ok) {
+      } else {
+      }
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
   };
 
   return (
